@@ -14,6 +14,7 @@
             --line: #27272a;
             --youtube: #FF0000;
             --twitch: #9146FF;
+            --minecraft: #5cb85c;
             --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --bezier: cubic-bezier(0.23, 1, 0.32, 1);
         }
@@ -169,6 +170,24 @@
             transform: translateX(12px); 
         }
 
+        /* Botón especial para el server de Minecraft */
+        .link-card.minecraft-link {
+            border-color: var(--minecraft);
+            color: var(--minecraft);
+            gap: 10px;
+        }
+        .link-card.minecraft-link:hover {
+            background: var(--minecraft);
+            color: #050505;
+            border-color: var(--minecraft);
+        }
+
+        .mc-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
         .empty-state {
             padding: 2.5rem; text-align: center;
             border: 1px dashed var(--line); border-radius: 14px;
@@ -226,8 +245,11 @@
 
         <section class="reveal delay-3">
             <h2 class="section-title">PERSONAL</h2>
-            <div class="empty-state">
-                Aquí no hay nada. Como en mi cuenta bancaria.
+            <div class="links-list">
+                <a href="https://darwinisnothere.lat/Extra/MC" target="_blank" class="link-card minecraft-link sfx-btn">
+                    <img src="assets/MC.png" alt="Minecraft" class="mc-icon">
+                    ENTRAR AL SERVIDOR DE MINECRAFT
+                </a>
             </div>
         </section>
 
@@ -256,6 +278,3 @@
     </script>
 </body>
 </html>
-
-
-
