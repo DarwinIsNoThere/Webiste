@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unirse al servidor</title>
+     <link rel="icon" type="image/png" href="assets/Niko.png">
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: #ffffff;
+            --muted: #a1a1aa;
+            --line: #27272a;
+            --minecraft: #5cb85c;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bezier: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scrollbar-width: none; overflow-x: hidden; }
+        html::-webkit-scrollbar { display: none; }
+
+        body {
+            background-color: var(--bg);
+            background-image: url('assets/BG.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--fg);
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .mc-icon {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .server-ip {
+            color: var(--minecraft);
+            font-weight: 700;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2rem;
+            border: 1.5px solid var(--minecraft);
+            border-radius: 9999px;
+            color: var(--minecraft);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s var(--bezier);
+            margin-top: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--minecraft);
+            color: #050505;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -10px var(--minecraft);
+        }
+
+        .btn img {
+            display: none;
+        }
+
+        .status {
+            font-size: 0.8rem;
+            color: #555;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="assets/MC.png" alt="Minecraft" class="mc-icon">
+        <h1>Conectando con el servidor...</h1>
+        <p>
+            Si Minecraft no se abre solo, presiona el botón.<br>
+            Dirección: <span class="server-ip">bed.darwinisnothere.lat:19132</span>
+        </p>
+
+        <a id="joinBtn" href="#" class="btn">
+            Entrar al servidor
+        </a>
+
+        <p class="status">Asegúrate de tener instalado Minecraft Bedrock.</p>
+    </div>
+
+    <script>
+        const serverName = "DarwinIsNoThere";
+        const serverIP = "bed.darwinisnothere.lat";
+        const serverPort = "19132";
+
+        const mcLink = `minecraft:?addExternalServer=${encodeURIComponent(serverName)}|${serverIP}:${serverPort}`;
+
+        document.getElementById('joinBtn').href = mcLink;
+
+        // Intento de redirección automática al cargar
+        window.onload = function() {
+            const a = document.createElement('a');
+            a.href = mcLink;
+            a.click();
+        };
+    </script>
+
+</body>
+</html>
